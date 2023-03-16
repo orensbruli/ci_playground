@@ -13,13 +13,7 @@ jobs:
     steps:
       - name: mount configuration directory
         run: |
-          ls -al
-          pwd
           mkdir -p config
           touch config/thefile.txt
-          ls -al config/
           sudo mkdir -p /etc/opt/birdseye
-          ls -al /etc
-          ls -al /etc/opt
-          ls -al /etc/opt/birdseye
-          sudo mount --bind ${{ github.workspace }}/config /etc/opt/birdseye
+          sudo mount --bind ./config /etc/opt/birdseye
