@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: ros:galactic
-      options: --priviledge
+      options: --security-opt apparmor:unconfined --cap-add=SYS_ADMIN
     steps:
       - name: mount configuration directory
         run: |
