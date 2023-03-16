@@ -14,6 +14,8 @@ jobs:
         run: |
           ls -al
           pwd
+          mkdir -p config
+          touch config/thefile.txt
           ls -al config/
           sudo mkdir -p /etc/opt/birdseye
           ls -al /etc
