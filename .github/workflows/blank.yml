@@ -10,7 +10,6 @@ jobs:
     container:
       image: berobotics/base:latest
     steps:
-      - name: install simulation dependencies
       - name: mount configuration directory
         run: |
           ls -al
