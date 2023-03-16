@@ -8,7 +8,7 @@ jobs:
   navigation_tests:
     runs-on: ubuntu-22.04
     container:
-      image: berobotics/base:latest
+      image: ros/galactic:latest
     steps:
       - name: mount configuration directory
         run: |
