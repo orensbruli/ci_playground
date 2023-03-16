@@ -31,5 +31,5 @@ jobs:
           mkdir config
           touch config/myfile.txt
           ls config
-          mkdir /etc/opt/birdseye
-          mount --bind config /etc/opt/birdseye
+          sudo mkdir -p /etc/opt/birdseye
+          sudo mount --bind config/ /etc/opt/birdseye
