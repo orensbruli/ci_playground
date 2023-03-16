@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: ros:galactic
+      options: --priviledge
     steps:
       - name: mount configuration directory
         run: |
