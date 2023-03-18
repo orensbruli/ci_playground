@@ -31,7 +31,7 @@ jobs:
           mkdir -p blabla/Testing
           touch blabla/Testing/onefile.txt
           mkdir -p blabla/test_results
-          touch blabla/test_results/otherfile.txt
+          # touch blabla/test_results/otherfile.txt
       - name: upload test summary artifacts (on failure)
         uses: actions/upload-artifact@v3
         if: always()
