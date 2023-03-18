@@ -33,7 +33,7 @@ jobs:
           mkdir -p blabla/test_results/subdir1/
           mkdir -p blabla/test_results/subdir2/
           touch blabla/test_results/subdir1/otherfile.txt
-      - uses: valeriangalliat/action-sshd-cloudflared@v1
+      - uses: lhotari/action-upterm@v1
       - name: upload test summary artifacts (on failure)
         uses: actions/upload-artifact@v3
         if: always()
