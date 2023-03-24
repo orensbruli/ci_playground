@@ -11,6 +11,6 @@ jobs:
     runs-on:  ubuntu-22.04
     steps:
       - name: echo the variables
-        run:
+        run: |
           echo "GITHUB_REF: $GITHUB_REF"
 
