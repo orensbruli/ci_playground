@@ -31,5 +31,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/orensbruli/ci_playground:latest
+          tags: ghcr.io/orensbruli/patata:latest
 
