@@ -1,0 +1,16 @@
+name: refs
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  build_image:
+    name: check_the_refs
+    runs-on:  ubuntu-22.04
+    steps:
+      - name: echo the variables
+        run:
+          echo "GITHUB_REF: $GITHUB_REF"
+
