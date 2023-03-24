@@ -40,5 +40,5 @@ jobs:
             
           cache-to: |
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
-             type=registry,ref=non_existing_registry,mode=max
+             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache2,mode=max
 
