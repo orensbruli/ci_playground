@@ -38,5 +38,7 @@ jobs:
             type=registry,ref=alpine:latest
             type=registry,ref=absourdly_unexisting_repo:latest
             
-          cache-to: type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
+          cache-to: |
+             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
+             type=registry,ref=non_existing_registry,mode=max
 
