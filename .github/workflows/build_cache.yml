@@ -31,10 +31,10 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/orensbruli/ci_playground
+          tags: ghcr.io/orensbruli/ci_playground:latest
           cache-from: |
             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache
-            type=registry,ref=ghcr.io/orensbruli/ci_playground
+            type=registry,ref=ghcr.io/orensbruli/ci_playground:latest
             type=registry,ref=alpine:latest
             
           cache-to: type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
