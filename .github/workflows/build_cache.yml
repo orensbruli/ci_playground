@@ -36,9 +36,9 @@ jobs:
             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache
             type=registry,ref=ghcr.io/orensbruli/ci_playground:latest
             type=registry,ref=alpine:latest
-            type=registry,ref=absourdly_unexisting_repo:latest
+            type=registry,ref=dorowu/ubuntu-desktop-lxde-vnc:latest
             
           cache-to: |
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
-             type=registry,ref=ghcr.io/orensbruli/othernamespace:buildcache,mode=max
+             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache2,mode=max
 
