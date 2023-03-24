@@ -20,15 +20,12 @@ jobs:
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Build Dockerfile underlay stage and push to GHCR
+      - name: Build Dockerfile
         uses: docker/build-push-action@v3
         with:
           context: .
-          target: pre-overlay  # NOTE: This is actually the underlay plus the rosdeps for the overlay
           push: true
           tags: ghcr.io/orensbruli/ci_playground
-          # Cache from main, the base ref (if the context is a Pull Request), and this branch's previous builds
-          # TODO: Remove the old build cache-from sources (those without -buildcache) once most PRs have been rebased and have their cache sources updated
           cache-from: |
             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache
             type=registry,ref=ghcr.io/orensbruli/ci_playground
