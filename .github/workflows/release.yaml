@@ -6,7 +6,7 @@ on:
   # Run workflow on-push to main or release branches
   push:
     tags:
-      - [0-9]+\.[0-9]+\.[0-9]+
+      - '[0-9]+\.[0-9]+\.[0-9]+'
 
 jobs:
   release:
