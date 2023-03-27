@@ -1,0 +1,22 @@
+name: Build and Test
+
+on:
+  # # Run workflow on-demand
+  workflow_dispatch:
+  # Run workflow on-push to main or release branches
+  push:
+    tags:
+    - [0-9]+\.[0-9]+\.[0-9]+
+
+jobs:
+  release:
+    name: Build image
+    runs-on:  ubuntu-22.04
+    steps:
+      - name: check_release
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: release
+        if: ${{ env.RELEASE_VERSION}}
+        run: echo ${{ env.RELEASE_VERSION}}
+        
