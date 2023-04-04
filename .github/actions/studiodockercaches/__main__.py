@@ -11,5 +11,5 @@ if __name__ == "__main__":
     for registry in regs:
         for cache in caches:
             result.append(f"type=registry,ref={registry}/{image}:{cache}-buildcache")
-    json.dumps(result)
+    print(json.dumps(result))
 
