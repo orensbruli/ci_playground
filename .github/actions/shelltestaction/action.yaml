@@ -1,17 +1,18 @@
 name: 'testaction'
 description: 'test action'
-
-inputs:
-  argvs:
-    description: Additional Arguments
 outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
-
+  parent_branch_name:
+    description: "Parent branch name"
+    value: ${{ steps.parent_branch.outputs.parent_branch_name }}
+  parent_branch_name:
+    description: "Parent branch name"
+    value: ${{ steps.current_branch.outputs.current_branch_name }}
 runs:
   using: "composite"
-  steps:
-    - id: random-number-generator
-      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-      shell: bash
+  steps: 
+    - id: parent_branch
+    run: echo "parent_branch_name=${GITHUB_BASE_REF:-$GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+    shell: bash
+    - id: current_branch 
+    run: echo "current_branch_name=${GITHUB_HEAD_REF:-GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+    shell: bash

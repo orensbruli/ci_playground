@@ -13,7 +13,7 @@ jobs:
       - uses: ./.github/actions/pythontestaction
       - id: shell_action
         uses: ./.github/actions/shelltestaction
-        with:
-          argvs: 'patata'
-      - run: echo ${{ steps.shell_action.outputs.random-number }}
+      - run: echo ${{ steps.shell_action.outputs.parent_branch_name }}
+      - run: echo ${{ steps.shell_action.outputs.current_branch_name }}
+
         
