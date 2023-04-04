@@ -7,8 +7,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/checkout@v1
     - id: branch_names
       uses: ./github/actions/shelltestaction/
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
     - id: source_caches
       shell: bash
       run: |
