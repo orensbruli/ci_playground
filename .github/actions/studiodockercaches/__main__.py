@@ -3,7 +3,7 @@ import json
 
 if __name__ == "__main__":
     parent = sys.argv[1]
-    current = sys.arg[2]
+    current = sys.argv[2]
     image = sys.argv[3]
     regs=( 'DOCKERUSER', "ghcr.io/GITHUBORG" )
     caches=( "main", parent, current )
