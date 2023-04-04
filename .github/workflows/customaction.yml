@@ -11,4 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: ./.github/actions/pythontestaction
-      - uses: ./.github/actions/shelltestaction
+      - id: shell_action
+        uses: ./.github/actions/shelltestaction
+        with:
+          argvs: 'patata'
+      - run: echo ${{ steps.shell_action.outputs.random-number }}
+        

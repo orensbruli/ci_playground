@@ -4,14 +4,14 @@ description: 'test action'
 inputs:
   argvs:
     description: Additional Arguments
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
 
 runs:
   using: "composite"
   steps:
-    # [optional] Make sure your version of Python is installed
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
-    - shell: bash
-      run: |
-        echo "output from shell"
+    - id: random-number-generator
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
