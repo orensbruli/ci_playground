@@ -17,4 +17,4 @@ runs:
       shell: bash
       run: |
         export PYTHONPATH=${{ github.action_path }}/..
-        python3 -m studiodockercaches ${{ steps.branch_names.output.parent_branch_name }} ${{ steps.branch_names.output.current }} ${{ inputs.parent_branch_name }}
+        python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current }} ${{ inputs.parent_branch_name }}
