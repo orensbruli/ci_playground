@@ -3,6 +3,8 @@ name: custom action
 on:
   # # Run workflow on-demand
   workflow_dispatch:
+  pull_request:
+  push:
 
 jobs:
   release:
