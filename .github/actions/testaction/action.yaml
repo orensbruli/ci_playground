@@ -1,0 +1,18 @@
+name: 'testaction'
+description: 'test action'
+
+inputs:
+  argvs:
+    description: Additional Arguments
+
+runs:
+  using: "composite"
+  steps:
+    # [optional] Make sure your version of Python is installed
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - shell: bash
+      run: |
+        export PYTHONPATH=${{ github.action_path }}:${{ github.action_path }}/vendor
+        python3 -m testaction ${{ inputs.argvs }}

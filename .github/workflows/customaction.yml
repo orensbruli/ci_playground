@@ -1,0 +1,13 @@
+name: custom action
+
+on:
+  # # Run workflow on-demand
+  workflow_dispatch:
+
+obs:
+  release:
+    name: Build image
+    runs-on:  ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/testaction
