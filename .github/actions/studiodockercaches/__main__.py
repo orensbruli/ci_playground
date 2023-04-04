@@ -2,9 +2,9 @@ import sys
 import json
 
 if __name__ == "__main__":
-    parent = argv[1]
-    current = arg[2]
-    image = argv[3]
+    parent = sys.argv[1]
+    current = sys.arg[2]
+    image = sys.argv[3]
     regs=( 'DOCKERUSER', "ghcr.io/GITHUBORG" )
     caches=( "main", parent, current )
     result = []
