@@ -14,5 +14,5 @@ runs:
       run: echo "parent_branch_name=${GITHUB_BASE_REF:-$GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
       shell: bash
     - id: current_branch 
-      run: echo "current_branch_name=${GITHUB_HEAD_REF:-GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+      run: echo "current_branch_name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
       shell: bash
