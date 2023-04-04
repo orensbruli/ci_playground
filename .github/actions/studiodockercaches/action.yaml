@@ -4,6 +4,10 @@ inputs:
   image:
     description: "docker image name"
     required: true
+outputs:
+  cache_list:
+    description: "Parent branch name"
+    value: ${{ steps.source_caches.outputs.source_caches }}
 runs:
   using: "composite"
   steps:
@@ -17,4 +21,5 @@ runs:
       shell: bash
       run: |
         export PYTHONPATH=${{ github.action_path }}/..
-        python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current_branch_name }} ${{ inputs.image }}
+        caches=$(python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current_branch_name }} ${{ inputs.image }})
+        echo "source_caches=$caches" >> $GITHUB_OUTPUT
