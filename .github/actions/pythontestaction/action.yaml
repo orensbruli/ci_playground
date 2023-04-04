@@ -15,4 +15,4 @@ runs:
     - shell: bash
       run: |
         export PYTHONPATH=${{ github.action_path }}/..
-        python3 -m testaction ${{ inputs.argvs }}
+        python3 -m pythontestaction ${{ inputs.argvs }}
