@@ -15,6 +15,7 @@ jobs:
       - uses: ./.github/actions/pythontestaction
       - id: shell_action
         uses: ./.github/actions/shelltestaction
+      - uses: ./.github/actions/studiodockercaches
       - run: echo ${{ steps.shell_action.outputs.parent_branch_name }}
       - run: echo ${{ steps.shell_action.outputs.current_branch_name }}
 

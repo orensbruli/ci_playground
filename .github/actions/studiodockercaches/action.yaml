@@ -1,0 +1,16 @@
+name: 'testaction'
+description: 'test action'
+inputs:
+  image:
+    description: "docker image name"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - id: branch_names
+      uses: ./github/actions/shelltestaction/
+    - id: source_caches
+      shell: bash
+      run: |
+        export PYTHONPATH=${{ github.action_path }}/..
+        python3 -m studiodockercaches ${{ steps.branch_names.output.parent_branch_name }} ${{ steps.branch_names.output.current }} ${{ inputs.parent_branch_name }}
