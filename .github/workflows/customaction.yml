@@ -4,7 +4,7 @@ on:
   # # Run workflow on-demand
   workflow_dispatch:
 
-obs:
+jobs:
   release:
     name: Build image
     runs-on:  ubuntu-22.04
