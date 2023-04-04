@@ -5,9 +5,9 @@ inputs:
     description: "docker image name"
     required: true
 outputs:
-  cache_list:
+  source_caches:
     description: "Parent branch name"
-    value: ${{ steps.source_caches.outputs.source_caches }}
+    value: ${{ steps.calc_caches.outputs.source_caches }}
 runs:
   using: "composite"
   steps:
@@ -17,7 +17,7 @@ runs:
     - uses: actions/setup-python@v2
       with:
         python-version: '3.10'
-    - id: source_caches
+    - id: calc_caches
       shell: bash
       run: |
         export PYTHONPATH=${{ github.action_path }}/..
