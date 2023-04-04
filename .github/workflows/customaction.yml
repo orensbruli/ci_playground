@@ -6,8 +6,9 @@ on:
 
 jobs:
   release:
-    name: Build image
+    name: Test custom action
     runs-on:  ubuntu-22.04
     steps:
       - uses: actions/checkout@v1
-      - uses: ./.github/actions/testaction
+      - uses: ./.github/actions/pythontestaction
+      - uses: ./.github/actions/shelltestaction
