@@ -4,8 +4,8 @@ outputs:
   parent_branch_name:
     description: "Parent branch name"
     value: ${{ steps.parent_branch.outputs.parent_branch_name }}
-  parent_branch_name:
-    description: "Parent branch name"
+  current_branch_name:
+    description: "current branch name"
     value: ${{ steps.current_branch.outputs.current_branch_name }}
 runs:
   using: "composite"
