@@ -7,21 +7,20 @@ on:
 
 jobs:
   docker:
+    strategy:
+        matrix:
+          yarn_build: ["build", "build:kiosk"]
     runs-on: ubuntu-latest
     steps:
+    
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: |
-            name/app
+            DOCKERHUB/APPNAME
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=sha
-            type=raw,patata
+            type=ref,event=branch,suffix=-${{ matrix.yarn_build }}
       - name: output
         run: |
             echo "${{ steps.meta.outputs.tags }}"
