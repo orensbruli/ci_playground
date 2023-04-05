@@ -24,4 +24,4 @@ jobs:
             type=raw,patata
       - name: output
         run: |
-            echo ${{ steps.meta.outputs.tags }}
+            echo "${{ steps.meta.outputs.tags }}"
