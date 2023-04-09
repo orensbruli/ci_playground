@@ -10,10 +10,10 @@ inputs:
 outputs:
   source_caches:
     description: "List of source caches"
-    value: ${{ steps.calc_caches.outputs.source_caches }}
+    value: ${{ steps.output_caches.outputs.source_caches }}
   target_caches:
     description: "List of target caches"
-    value: ${{ steps.calc_caches.outputs.target_caches }}
+    value: ${{ steps.output_caches.outputs.target_caches }}
 runs:
   using: "composite"
   steps:
