@@ -26,18 +26,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - id: cache_list
+        uses: ./.github/actions/studiodockercaches
+        with:
+            image: "ci_playground"
+      - run: echo ${{ steps.cache_list.outputs.source_caches }} 
       - name: Build Dockerfile
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
           tags: ghcr.io/orensbruli/ci_playground:latest
-          cache-from: |
-            type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache
-            type=registry,ref=ghcr.io/orensbruli/ci_playground:latest
-            type=registry,ref=alpine:latest
-            type=registry,ref=dorowu/ubuntu-desktop-lxde-vnc:latest
-            
+          cache-from: ${{ steps.cache_list.outputs.source_caches }}
           cache-to: |
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache2,mode=max
