@@ -30,14 +30,16 @@ jobs:
         uses: ./.github/actions/studiodockercaches
         with:
             image: "ci_playground"
-      - run: echo ${{ steps.cache_list.outputs.source_caches }} 
+      - run: echo "${{ steps.cache_list.outputs.source_caches }}"
+      - run: echo "${{ fromJSON(steps.cache_list.outputs.source_caches) }}"
+      - run: echo "${{ toJSON(steps.cache_list.outputs.source_caches) }}"
       - name: Build Dockerfile
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
           tags: ghcr.io/orensbruli/ci_playground:latest
-          cache-from: ${{  fromJSON(toJSON(steps.cache_list.outputs.source_caches)) }}
+          cache-from: ${{  toJSON(steps.cache_list.outputs.source_caches) }}
           cache-to: |
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache2,mode=max
