@@ -31,8 +31,6 @@ jobs:
         with:
             image: "ci_playground"
       - run: echo "${{ steps.cache_list.outputs.source_caches }}"
-      - run: echo "${{ fromJSON(steps.cache_list.outputs.source_caches) }}"
-      - run: echo "${{ toJSON(steps.cache_list.outputs.source_caches) }}"
       - name: Build Dockerfile
         uses: docker/build-push-action@v3
         with:
