@@ -34,6 +34,6 @@ runs:
       shell: bash
       run: |
         echo "${{ steps.calc_caches.outputs.caches }}"
-        echo "${{ fromJSON(steps.calc_caches.outputs.caches) }}"
-        echo "${{ fromJSON(steps.calc_caches.outputs.caches).from-cache }}" >> $GITHUB_OUTPUT
-        echo "${{ fromJSON(steps.calc_caches.outputs.caches).to-cache }}" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches)['from-cache'] }}"
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches)['from-cache'] }}" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches)['to-cache'] }}" >> $GITHUB_OUTPUT
