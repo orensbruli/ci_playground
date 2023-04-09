@@ -37,7 +37,7 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/orensbruli/ci_playground:latest
-          cache-from: ${{  fromJSON(steps.cache_list.outputs.source_caches) }}
+          cache-from: ${{  toJson(steps.cache_list.outputs.source_caches) }}
           cache-to: |
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
              type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache2,mode=max
