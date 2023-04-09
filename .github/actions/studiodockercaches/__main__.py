@@ -10,6 +10,6 @@ if __name__ == "__main__":
     result = []
     for registry in regs:
         for cache in caches:
-            result.append(f"type=registry,ref={registry}/{image}:{cache}-buildcache")
-    print(json.dumps(result))
+            print(f"type=registry,ref={registry}/{image}:{cache}-buildcache")
+    
 
