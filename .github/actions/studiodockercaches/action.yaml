@@ -28,5 +28,4 @@ runs:
       run: |
         export PYTHONPATH=${{ github.action_path }}/..
         caches=$(python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current_branch_name }} ${{ inputs.image }} ${{ inputs.registries }}) 
-        echo "source_caches=${{ fromJSON($caches).from-cache }}" >> $GITHUB_OUTPUT
-        echo "target_caches=${{ fromJSON($caches).to-cache }}" >> $GITHUB_OUTPUT
+        echo "$caches"
