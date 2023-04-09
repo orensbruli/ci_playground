@@ -41,6 +41,5 @@ jobs:
           cache-from: |
             ${{  steps.cache_list.outputs.source_caches }}
           cache-to: |
-             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache,mode=max
-             type=registry,ref=ghcr.io/orensbruli/ci_playground:buildcache2,mode=max
+            ${{  steps.cache_list.outputs.target_caches }}
 
