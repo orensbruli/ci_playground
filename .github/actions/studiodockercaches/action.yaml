@@ -9,8 +9,11 @@ inputs:
     required: false
 outputs:
   source_caches:
-    description: "Parent branch name"
+    description: "List of source caches"
     value: ${{ steps.calc_caches.outputs.source_caches }}
+  target_caches:
+    description: "List of target caches"
+    value: ${{ steps.calc_caches.outputs.target_caches }}
 runs:
   using: "composite"
   steps:
@@ -25,4 +28,5 @@ runs:
       run: |
         export PYTHONPATH=${{ github.action_path }}/..
         caches=$(python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current_branch_name }} ${{ inputs.image }} ${{ inputs.registries }}) 
-        echo "source_caches=$caches" >> $GITHUB_OUTPUT
+        echo "source_caches=${{ fromJSON(caches).from-cache }}" >> $GITHUB_OUTPUT
+        echo "target_caches=${{ fromJSON(caches).to-cache }}" >> $GITHUB_OUTPUT
