@@ -5,7 +5,7 @@ if __name__ == "__main__":
     parent = sys.argv[1]
     current = sys.argv[2]
     image = sys.argv[3]
-    regs=( 'DOCKERUSER', "ghcr.io/GITHUBORG" )
+    regs=sys.argv[4].split(',')
     caches=( "main", parent, current )
     result = []
     for registry in regs:

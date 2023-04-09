@@ -4,6 +4,9 @@ inputs:
   image:
     description: "docker image name"
     required: true
+  registries:
+    description: "list of registries"
+    required: false
 outputs:
   source_caches:
     description: "Parent branch name"
@@ -21,5 +24,5 @@ runs:
       shell: bash
       run: |
         export PYTHONPATH=${{ github.action_path }}/..
-        caches=$(python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current_branch_name }} ${{ inputs.image }})
+        caches=$(python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current_branch_name }} ${{ inputs.image }} ${{ inputs.registries }}) 
         echo "source_caches=$caches" >> $GITHUB_OUTPUT
