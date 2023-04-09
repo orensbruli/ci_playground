@@ -1,4 +1,5 @@
 import argparse
+import json
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -17,3 +18,4 @@ if __name__ == "__main__":
                 result["cache-to"].append(f"type=registry,ref={registry}/{args.image}:{cache}-buildcache")
     result["cache-from"] = "\n".join(result["cache-from"])
     result["cache-to"] = "\n".join(result["cache-to"])
+    print(json.dumps(result))
