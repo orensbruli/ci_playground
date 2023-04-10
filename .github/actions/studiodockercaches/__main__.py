@@ -64,6 +64,6 @@ if __name__ == "__main__":
             result["cache-from"].append(f"type=registry,ref={ref}")
             if cache == args.current:
                 result["cache-to"].append(f"type=registry,ref={ref}")
-    result["cache-from"] = "\n".join(result["cache-from"])
-    result["cache-to"] = "\n".join(result["cache-to"])
+    result["cache-from"] = "\n".join(set(result["cache-from"]))
+    result["cache-to"] = "\n".join(set(result["cache-to"]))
     print(json.dumps(result))
