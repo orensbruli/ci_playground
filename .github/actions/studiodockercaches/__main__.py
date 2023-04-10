@@ -47,7 +47,7 @@ if __name__ == "__main__":
     Create a json with the cache-from and cache-to options for docker buildx
     
     Usage:
-    python3 <this_file>.py parent_branch current_branch image_name registry1 registry2 registry3
+        python3 <this_file>.py parent_branch current_branch image_name registry1 registry2 registry3
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("parent")
