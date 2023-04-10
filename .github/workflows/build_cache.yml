@@ -37,8 +37,6 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/orensbruli/ci_playground:latest
-          cache-from: |
-            ${{  steps.cache_list.outputs.source_caches }}
-          cache-to: |
-            ${{  steps.cache_list.outputs.target_caches }}
+          cache-from: ${{  steps.cache_list.outputs.source_caches }}
+          cache-to: ${{  steps.cache_list.outputs.target_caches }}
 
