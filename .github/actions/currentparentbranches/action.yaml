@@ -1,5 +1,5 @@
-name: 'testaction'
-description: 'test action'
+name: 'Return the names of the current and the parent branch'
+description: 'Returned values parent_branch_name and current_branch_name'
 outputs:
   parent_branch_name:
     description: "Parent branch name"
