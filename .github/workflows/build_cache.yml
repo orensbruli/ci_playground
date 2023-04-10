@@ -31,15 +31,12 @@ jobs:
         with:
             image: "ci_playground"
             registries: "ghcr.io/${{ github.repository_owner }}"
-      - run: echo "${{ steps.cache_list.outputs.source_caches }}"
       - name: Build Dockerfile
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
           tags: ghcr.io/orensbruli/ci_playground:latest
-          cache-from: |
-            ${{  steps.cache_list.outputs.source_caches }}
-          cache-to: |
-            ${{  steps.cache_list.outputs.target_caches }}
+          cache-from: ${{  steps.cache_list.outputs.source_caches }}
+          cache-to: ${{  steps.cache_list.outputs.target_caches }}
 

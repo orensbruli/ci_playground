@@ -31,6 +31,12 @@ runs:
         echo "caches=$caches" >> $GITHUB_OUTPUT
     - id: output_caches
       shell: bash
+      # Multi-line output https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
       run: |
-        echo "source_caches=${{ fromJSON(steps.calc_caches.outputs.caches).cache-from }}" >> $GITHUB_OUTPUT
-        echo "target_caches=${{ fromJSON(steps.calc_caches.outputs.caches).cache-to }}" >> $GITHUB_OUTPUT
+        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+        echo "source_caches<<$EOF" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-from }}" >> $GITHUB_OUTPUT
+        echo "$EOF" >> $GITHUB_OUTPUT
+        echo "target_caches<<$EOF" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-to }}" >> $GITHUB_OUTPUT
+        echo "$EOF" >> $GITHUB_OUTPUT
