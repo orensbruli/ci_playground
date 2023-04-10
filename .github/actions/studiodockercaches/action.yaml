@@ -33,9 +33,9 @@ runs:
       shell: bash
       run: |
         EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-        echo "source_caches<<$EOF" >> $GITHUB_ENV
-        echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-from }}" >> $GITHUB_ENV
-        echo "$EOF" >> $GITHUB_ENV
-        echo "target_caches<<$EOF" >> $GITHUB_ENV
-        echo ${{ fromJSON(steps.calc_caches.outputs.caches).cache-to }}" >> $GITHUB_ENV
-        echo "$EOF" >> $GITHUB_ENV
+        echo "source_caches<<$EOF" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-from }}" >> $GITHUB_OUTPUT
+        echo "$EOF" >> $GITHUB_OUTPUT
+        echo "target_caches<<$EOF" >> $GITHUB_OUTPUT
+        echo ${{ fromJSON(steps.calc_caches.outputs.caches).cache-to }}" >> $GITHUB_OUTPUT
+        echo "$EOF" >> $GITHUB_OUTPUT
