@@ -37,5 +37,5 @@ runs:
         echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-from }}" >> $GITHUB_OUTPUT
         echo "$EOF" >> $GITHUB_OUTPUT
         echo "target_caches<<$EOF" >> $GITHUB_OUTPUT
-        echo ${{ fromJSON(steps.calc_caches.outputs.caches).cache-to }}" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-to }}" >> $GITHUB_OUTPUT
         echo "$EOF" >> $GITHUB_OUTPUT
