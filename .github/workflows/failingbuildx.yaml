@@ -32,4 +32,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: manually docker build
-        run: /usr/bin/docker buildx build --provenance false --cache-to type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/patata:onething-cache,mode=max --tag ${{ secrets.DOCKERHUB_USERNAME }}/patata:onething --push .
+        run: /usr/bin/docker buildx build --provenance false --cache-to type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/patata:onething,mode=max --tag ${{ secrets.DOCKERHUB_USERNAME }}/patata:onething .
