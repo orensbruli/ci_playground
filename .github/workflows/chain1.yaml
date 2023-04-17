@@ -1,6 +1,4 @@
 # a workflow depending on other
-
-
 name: Test in chain
 
 on:

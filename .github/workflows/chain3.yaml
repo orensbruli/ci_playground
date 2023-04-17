@@ -1,7 +1,5 @@
 # a workflow depending on other
-
-
-name: Test in chain
+name: Release in chain
 
 on:
   workflow_run:
