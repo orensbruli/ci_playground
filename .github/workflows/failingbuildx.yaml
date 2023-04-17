@@ -4,8 +4,6 @@ on:
   push:
   pull_request:
 
-# dependabot PRs don't have access to secrets, so CI will fail in those cases. We need to explicitly grant permissions
-# https://docs.github.com/en/enterprise-server@3.4/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#changing-github_token-permissions
 permissions:
   packages: write
 
