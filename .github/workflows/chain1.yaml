@@ -1,0 +1,16 @@
+# a workflow depending on other
+
+
+name: Test in chain
+
+on:
+  workflow_run:
+    workflows: [ Build in chain ]
+    types:
+      - completed
+
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo "Testing the Docker image..."
