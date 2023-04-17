@@ -11,4 +11,6 @@ jobs:
     test:
       runs-on: ubuntu-latest
       steps:
-        - run: echo "Testing the Docker image..."
+        - run: | 
+            echo "Testing FAIL the Docker image..."
+            exit 1
