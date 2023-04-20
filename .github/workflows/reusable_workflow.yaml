@@ -11,6 +11,7 @@ jobs:
   job_name:
     name: Any job name
     runs-on: ubuntu-latest
+    needs: ${{ inputs.patata }}
     steps:
       - name: Hello World
         run: echo "Hello World after ${{ inputs.patata }}"
