@@ -1,0 +1,37 @@
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+    job1:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Wait for other workflow to complete
+          run: |
+            echo "Running job1..."
+            sleep 10
+    job2:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Wait for other workflow to complete
+          run: |
+            echo "Running job2..."
+            sleep 15
+    job3:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Wait for other workflow to complete
+          run: |
+            echo "Running job3..."
+            sleep 5
+    call-workflow-in-local-repo:
+      strategy:
+        matrix:
+          job: [job1, job2, job3]
+      needs: ${{ matrix.job }}
+      steps:
+        - name: Wait for other workflow to complete
+          run: |
+            echo "Started after ${{ matrix.job }}..."
+

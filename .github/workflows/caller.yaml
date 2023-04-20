@@ -13,6 +13,7 @@ jobs:
               sleep 10
               echo "Done waiting for other workflow to complete..."
     call-workflow-in-local-repo:
+      needs: job_to_wait
       uses: ./.github/workflows/reusable_workflow.yaml
       with:
         patata: '["job_to_wait"]'
