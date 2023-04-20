@@ -1,9 +1,10 @@
 on:
   workflow_call:
     # List of names of other workflows that must complete successfully before this workflow can run
-    needs:
-      required: true
-      type: string
+    inputs:
+        needs:
+          required: true
+          type: string
 
 
 jobs:
