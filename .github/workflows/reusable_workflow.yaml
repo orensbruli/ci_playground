@@ -1,16 +1,15 @@
 on:
   workflow_call:
-    # List of names of other workflows that must complete successfully before this workflow can run
     inputs:
-        needs:
-          required: true
-          type: string
-
+      needs:
+        required: true
+        type: string
 
 jobs:
   job_name:
     name: Any job name
-    needs: fromJson(${{ inputs.needs }})
+    needs: ${{ fromJSON(inputs.needs) }}
     runs-on: ubuntu-latest
     steps:
-      run: echo "Hello World after ${{ inputs.needs }}"
+      - name: Hello World
+        run: echo "Hello World after ${{ inputs.needs }}"
