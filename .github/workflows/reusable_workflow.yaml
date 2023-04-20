@@ -1,3 +1,5 @@
+name: Reusable workflow for building Docker images
+
 on:
   workflow_call:
     inputs:
