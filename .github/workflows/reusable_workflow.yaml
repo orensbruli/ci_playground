@@ -1,4 +1,3 @@
-# Reusable workflow for building Docker images
 on:
   workflow_call:
     # List of names of other workflows that must complete successfully before this workflow can run
