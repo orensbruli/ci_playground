@@ -1,0 +1,18 @@
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+    job_to_wait:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Wait for other workflow to complete
+            run: |
+              echo "Waiting some time..."
+              sleep 10
+              echo "Done waiting for other workflow to complete..."
+    call-workflow-in-local-repo:
+      uses: ./.github/workflows/reusable-workflow
+      with:
+        needs: '["Test in chain"]'
