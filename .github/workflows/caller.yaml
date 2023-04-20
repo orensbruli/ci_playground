@@ -13,6 +13,6 @@ jobs:
               sleep 10
               echo "Done waiting for other workflow to complete..."
     call-workflow-in-local-repo:
-      uses: ./.github/workflows/reusable-workflow
+      uses: ./.github/workflows/reusable_workflow.yaml
       with:
         needs: '["Test in chain"]'
