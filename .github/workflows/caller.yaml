@@ -15,4 +15,4 @@ jobs:
     call-workflow-in-local-repo:
       uses: ./.github/workflows/reusable_workflow.yaml
       with:
-        needs: '["Test in chain"]'
+        patata: '["Test in chain"]'

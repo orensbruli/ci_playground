@@ -3,15 +3,14 @@ name: Reusable workflow for building Docker images
 on:
   workflow_call:
     inputs:
-      needs:
+      patata:
         required: true
         type: string
 
 jobs:
   job_name:
     name: Any job name
-    needs: ${{ fromJSON(inputs.needs) }}
     runs-on: ubuntu-latest
     steps:
       - name: Hello World
-        run: echo "Hello World after ${{ inputs.needs }}"
+        run: echo "Hello World after ${{ inputs.patata }}"
