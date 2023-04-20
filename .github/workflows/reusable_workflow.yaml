@@ -10,6 +10,6 @@ jobs:
   job_name:
     name: Any job name
     needs: fromJson(${{ inputs.needs }})
-    runs-on:
+    runs-on: ubuntu-latest
     steps:
       run: echo "Hello World after ${{ inputs.needs }}"
