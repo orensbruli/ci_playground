@@ -23,7 +23,7 @@ jobs:
             non_documentation:
               - added|modified: '!**/*.md'
               - added|modified: '!**/*.rst'
-            non_non_frontend_code:
+            non_frontend_code:
               - added|modified: '!frontend/**'
             python_code:
               - added|modified: '**/*.py'
