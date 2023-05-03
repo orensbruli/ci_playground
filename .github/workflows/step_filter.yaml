@@ -42,7 +42,7 @@ jobs:
           echo "non_documentation: ${{ needs.check_code_changes.outputs.non_documentation }}"
           echo "python_code: ${{ needs.check_code_changes.outputs.python_code }}"
           echo "non_frontend_code: ${{ needs.check_code_changes.outputs.non_frontend_code }}"
-      # test both conditions
+
       - name: run one thing
         if: needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'
         run: echo "needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'"
