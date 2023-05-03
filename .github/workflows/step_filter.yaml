@@ -24,7 +24,7 @@ jobs:
               - added|modified: '!**/*.md'
               - added|modified: '!**/*.rst'
             non_frontend_code:
-              - added|modified: '!src/moveit_studio_web/**'
+              - added|modified: '!frontend/**'
             python_code:
               - added|modified: '**/*.py'
 
