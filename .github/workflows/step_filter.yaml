@@ -23,8 +23,8 @@ jobs:
             non_documentation:
               - added|modified: '!**/*.md'
               - added|modified: '!**/*.rst'
-            frontend_code:
-              - added|modified: 'src/moveit_studio_web/**'
+            non_frontend_code:
+              - added|modified: '!src/moveit_studio_web/**'
             python_code:
               - added|modified: '**/*.py'
 
@@ -39,5 +39,5 @@ jobs:
           echo "python_code: ${{ needs.check_code_changes.outputs.python_code }}"
           echo "frontend_code: ${{ needs.check_code_changes.outputs.frontend_code }}"
       - name: run one thing
-        if: needs.check_code_changes.outputs.frontend_code == 'false' && needs.check_code_changes.outputs.non_documentation == 'true'
+        if: needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'
         run: echo "needs.check_code_changes.outputs.frontend_code == 'false' && needs.check_code_changes.outputs.non_documentation == 'true'"
