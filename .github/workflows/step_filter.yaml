@@ -10,7 +10,7 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     outputs:
-      non_documentation: ${{ steps.filter.outputs.non_markdown && steps.filter.outputs.non_rst }}
+      non_documentation: ${{ steps.filter.outputs.non_markdown == 'true' && steps.filter.outputs.non_rst == 'true' }}
       python_code: ${{ steps.filter.outputs.python_code }}
       non_frontend_code: ${{ steps.filter.outputs.non_frontend_code }}
     steps:
