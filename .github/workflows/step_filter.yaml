@@ -43,5 +43,5 @@ jobs:
         if: needs.check_code_changes.outputs.frontend_code == 'false' && needs.check_code_changes.outputs.documentation == 'false'
         run: echo "run one thing"
       - name: run another thing
-        if: !(needs.check_code_changes.outputs.frontend_code == 'true' || needs.check_code_changes.outputs.documentation == 'false')
+        if: ${{ !( needs.check_code_changes.outputs.frontend_code == 'true' || needs.check_code_changes.outputs.documentation == 'false' ) }}
         run: echo "run another thing"
