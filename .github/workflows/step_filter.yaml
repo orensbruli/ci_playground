@@ -40,5 +40,5 @@ jobs:
           echo "frontend_code: ${{ needs.check_code_changes.outputs.frontend_code }}"
       # test both conditions
       - name: run one thing
-        if: needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'
-        run: echo "needs.check_code_changes.outputs.frontend_code == 'false' && needs.check_code_changes.outputs.non_documentation == 'true'"
+        if: needs.check_code_changes.outputs.non_frontend_code == 'true' || needs.check_code_changes.outputs.non_documentation == 'true'
+        run: echo "needs.check_code_changes.outputs.frontend_code == 'false' || needs.check_code_changes.outputs.non_documentation == 'true'"
