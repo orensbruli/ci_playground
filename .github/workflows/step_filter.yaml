@@ -10,7 +10,7 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     outputs:
-      backend_code: ${{ steps.filter.outputs.backend_code }}
+      backend_code: ${{ steps.filter.outputs.documentation }}
       python_code: ${{ steps.filter.outputs.python_code }}
       frontend_code: ${{ steps.filter.outputs.frontend_code }}
     steps:
@@ -36,7 +36,7 @@ jobs:
     steps:
       - name: values of filters
         run: |
-          echo "backend_code: ${{ needs.check_code_changes.outputs.backend_code }}"
+          echo "backend_code: ${{ needs.check_code_changes.outputs.documentation }}"
           echo "python_code: ${{ needs.check_code_changes.outputs.python_code }}"
           echo "frontend_code: ${{ needs.check_code_changes.outputs.frontend_code }}"
       - name: run one thing
