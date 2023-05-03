@@ -19,6 +19,7 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: filter
         with:
+          # Be careful. The rules of a filter are evaluated as OR statements.
           # non_documentation: some modified code is not documentation
           # non_frontend_code: some modified code is nt frontend
           filters: |
