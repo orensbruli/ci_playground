@@ -10,7 +10,7 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     outputs:
-      non_documentation: ${{ steps.filter.outputs.non_markdown == 'true' && steps.filter.outputs.non_rst == 'true' }}
+      non_documentation: ${{ !( steps.filter.outputs.markdown == 'true' || steps.filter.outputs.rst == 'true' ) }}
       python_code: ${{ steps.filter.outputs.python_code }}
       non_frontend_code: ${{ steps.filter.outputs.non_frontend_code }}
     steps:
@@ -23,10 +23,10 @@ jobs:
           # non_documentation: some modified code is not documentation
           # non_frontend_code: some modified code is nt frontend
           filters: |
-            non_markdown:
-              - added|modified: '!**/*.md'
-            non_rst:
-              - added|modified: '!**/*.rst'
+            markdown:
+              - added|modified: '**/*.md'
+            rst:
+              - added|modified: '**/*.rst'
             non_frontend_code:
               - added|modified: '!frontend/**'
             python_code:
