@@ -1,0 +1,39 @@
+# This workflow will build a debian package from folder with a ros package
+name: Build ROS2 debian package
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+
+jobs:
+    ros2_deb_package:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout source
+            uses: actions/checkout@v3
+            repository: open-rmf/rmf_api_msgs
+          - name: Checkout ros-deb-builder
+            uses: actions/checkout@v3
+            with:
+              repository: orensbruli/ros-deb-builder-action
+              ref: de6666887a3c7048cb4fda925bd6bafeaa376b39
+              path: deb_builder
+          - name: Cache ccache
+            uses: actions/cache@v3
+            with:
+              path: /home/runner/.cache/ccache
+              key: ccache-${{ inputs.DEB_DISTRO }}-${{ inputs.ROS_DISTRO }}
+          - name: check checkout
+            run: ls -lr
+          - name: Setup build environment
+            run: deb_builder/./prepare
+            shell: sh
+            env:
+              DEB_DISTRO: jammy
+          - name: Create package
+            run: cd src && deb_builder/./build
+            shell: sh
+            env:
+              ROS_DISTRO: humble
+              DEB_DISTRO: jammy
