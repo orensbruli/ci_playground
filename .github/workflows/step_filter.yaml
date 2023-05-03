@@ -24,7 +24,6 @@ jobs:
           filters: |
             non_documentation:
               - added|modified: '!**/*.md'
-              - added|modified: '!**/*.rst'
             non_frontend_code:
               - added|modified: '!frontend/**'
             python_code:
