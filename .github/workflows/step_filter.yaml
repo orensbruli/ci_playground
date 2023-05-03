@@ -43,4 +43,4 @@ jobs:
       # test both conditions
       - name: run one thing
         if: needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'
-        run: needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'
+        run: echo "needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'"
