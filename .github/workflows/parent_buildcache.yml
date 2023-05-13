@@ -15,6 +15,9 @@ jobs:
       - name: Set Docker cache sources
         id: set_cache_source
         run: |
+          echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
+          echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
+          echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
           # In PR events GITHUB_BASE_REF is the target branch, and GITHUB_HEAD_REF is the source branch
           # In Push events GITHUB_BASE_REF and GITHUB_HEAD_REF are empty so we can default to GITHUB_REF_NAME
           base_branch_name="${GITHUB_BASE_REF:-$GITHUB_REF_NAME}-buildcache"
