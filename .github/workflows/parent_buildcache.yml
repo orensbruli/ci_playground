@@ -15,10 +15,14 @@ jobs:
       - name: Set Docker cache sources
         id: set_cache_source
         run: |
+          # In PR events GITHUB_BASE_REF is the target branch, and GITHUB_HEAD_REF is the source branch
+          # In Push events GITHUB_BASE_REF and GITHUB_HEAD_REF are empty so we can default to GITHUB_REF_NAME
           base_branch_name="${GITHUB_BASE_REF:-$GITHUB_REF_NAME}-buildcache"
           current_branch_name="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}-buildcache"
           
           # If the expected cache for the base branch does not exist, use the main branch cache instead
+          # This will usually happen when a new branch is created
+          # TODO: This will not work if the main branch is not called "main"
           if ! docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/orensbruli:$base_branch_name > /dev/null; then
             base_branch_name="main-buildcache"
           fi
