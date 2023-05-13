@@ -23,7 +23,8 @@ jobs:
           # If the expected cache for the base branch does not exist, use the main branch cache instead
           # This will usually happen when a new branch is created
           # TODO: This will not work if the main branch is not called "main"
-          if ! docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/orensbruli:$base_branch_name > /dev/null; then
+          if ! docker manifest inspect "${{ secrets.DOCKERHUB_USERNAME }}/orensbruli-buildcaches:$base_branch_name" > /dev/null; then
+            echo "Cache for $base_branch_name does not exist, using main-buildcache instead"
             base_branch_name="main-buildcache"
           fi
           
