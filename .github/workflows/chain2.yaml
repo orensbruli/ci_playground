@@ -1,0 +1,15 @@
+# a workflow depending on other
+name: Release in chain
+
+on:
+  workflow_run:
+    workflows: [ Test in chain ]
+    types:
+      - completed
+
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      steps:
+        - run: echo "Release the Docker image..."

@@ -17,6 +17,10 @@ jobs:
           echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
           echo "GITHUB_REF_NAME: $GITHUB_REF_NAME"
           echo "GITHUB_EVENT_NAME: $GITHUB_EVENT_NAME"
+          parent_branch_name=${GITHUB_BASE_REF:-$GITHUB_REF_NAME}
+          current_branch_name=${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}
+          echo $parent_branch_name
+          echo $current_branch_name
           
           
           

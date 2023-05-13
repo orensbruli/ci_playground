@@ -1,0 +1,26 @@
+name: docker metadata
+
+on:
+    workflow_dispatch:
+    pull_request:
+    push:
+
+jobs:
+  docker:
+    strategy:
+        matrix:
+          yarn_build: ["build", "build:kiosk"]
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            DOCKERHUB/APPNAME
+          tags: |
+            type=ref,event=branch,suffix=-${{ matrix.yarn_build }}
+      - name: output
+        run: |
+            echo "${{ steps.meta.outputs.tags }}"

@@ -1,0 +1,17 @@
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+    build_chain:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          job: [job1, job2, job3]
+      needs: ${{ matrix.job }}
+      steps:
+        - name: Wait for other workflow to complete
+          run: |
+            echo "Started after ${{ matrix.job }}..."
+

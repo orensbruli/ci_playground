@@ -1,0 +1,32 @@
+name: ternary
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  ternaryoperator_tests:
+    runs-on: ubuntu-22.04
+    strategy:
+        matrix:
+          yarn_build: ["build", "build:kiosk"]
+    steps:
+      - name: mount configuration directory
+        run: |
+          echo "${{ matrix.yarn_build == 'build:kiosk' && '-kiosk' || '' }}"
+      # Force one of the two jobs of the matrix to fail
+      - name: one fails
+        if: ${{ matrix.yarn_build == 'build:kiosk' }}
+        run: exit 1
+  # This allows us to have a branch protection rule with matrix builds
+  # Checks for push and PR depends on this job and not on each one of the matrix jobs
+  join-job:
+    name: join job
+    runs-on: ubuntu-22.04
+    needs: [ternaryoperator_tests]
+    if: always()
+    steps:
+      - name: Failing build
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
+
+
+

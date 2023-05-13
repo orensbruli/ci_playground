@@ -1,0 +1,27 @@
+name: custom action
+
+on:
+  # # Run workflow on-demand
+  workflow_dispatch:
+  pull_request:
+  push:
+
+jobs:
+  release:
+    name: Test custom action
+    runs-on:  ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/pythontestaction
+      - id: shell_action
+        uses: ./.github/actions/shelltestaction
+      - id: cache_list
+        uses: ./.github/actions/studiodockercaches
+        with:
+          image: "patata"
+      - run: echo ${{ steps.shell_action.outputs.parent_branch_name }}
+      - run: echo ${{ steps.shell_action.outputs.current_branch_name }}
+      - run: echo ${{ steps.cache_list.outputs.source_caches }}
+      
+
+        

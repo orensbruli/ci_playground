@@ -1,0 +1,42 @@
+name: 'testaction'
+description: 'test action'
+inputs:
+  image:
+    description: "docker image name"
+    required: true
+  registries:
+    description: "list of registries"
+    required: false
+outputs:
+  source_caches:
+    description: "List of source caches"
+    value: ${{ steps.output_caches.outputs.source_caches }}
+  target_caches:
+    description: "List of target caches"
+    value: ${{ steps.output_caches.outputs.target_caches }}
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v1
+    - id: branch_names
+      uses: ./.github/actions/currentparentbranches
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - id: calc_caches
+      shell: bash
+      run: |
+        export PYTHONPATH=${{ github.action_path }}/..
+        caches=$(python3 -m studiodockercaches ${{ steps.branch_names.outputs.parent_branch_name }} ${{ steps.branch_names.outputs.current_branch_name }} ${{ inputs.image }} ${{ inputs.registries }}) 
+        echo "caches=$caches" >> $GITHUB_OUTPUT
+    - id: output_caches
+      shell: bash
+      # Multi-line output https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
+      run: |
+        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+        echo "source_caches<<$EOF" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-from }}" >> $GITHUB_OUTPUT
+        echo "$EOF" >> $GITHUB_OUTPUT
+        echo "target_caches<<$EOF" >> $GITHUB_OUTPUT
+        echo "${{ fromJSON(steps.calc_caches.outputs.caches).cache-to }}" >> $GITHUB_OUTPUT
+        echo "$EOF" >> $GITHUB_OUTPUT

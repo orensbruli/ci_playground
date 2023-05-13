@@ -1,0 +1,22 @@
+name: release
+
+on:
+  # # Run workflow on-demand
+  workflow_dispatch:
+  # Run workflow on-push to main or release branches
+  push:
+    tags:
+      - '[0-9]+\.[0-9]+\.[0-9]+'
+
+jobs:
+  release:
+    name: Build image
+    runs-on:  ubuntu-22.04
+    steps:
+      - name: check_release
+        run: |
+          echo "RELEASE_VERSION=$( echo ${GITHUB_REF#refs/*/}  | grep -Eq  ^[0-9]+\.[0-9]+\.[0-9]+$ && echo 'true' || echo 'false')" >> $GITHUB_ENV
+      - name: release
+        if: env.RELEASE_VERSION == 'true'
+        run: echo ${{ env.RELEASE_VERSION}}
+        

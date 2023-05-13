@@ -1,0 +1,48 @@
+name: filter by files
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  check_code_changes:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    outputs:
+      non_documentation: ${{ !( steps.filter.outputs.markdown == 'true' || steps.filter.outputs.rst == 'true' ) }}
+      python_code: ${{ steps.filter.outputs.python_code }}
+      non_frontend_code: ${{ steps.filter.outputs.non_frontend_code }}
+    steps:
+      - uses: actions/checkout@v2
+        if: github.event_name == 'push'
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          # Be careful. The rules of a filter are evaluated as OR statements.
+          # non_documentation: some modified code is not documentation
+          # non_frontend_code: some modified code is nt frontend
+          filters: |
+            markdown:
+              - added|modified: '**/*.md'
+            rst:
+              - added|modified: '**/*.rst'
+            non_frontend_code:
+              - added|modified: '!frontend/**'
+            python_code:
+              - added|modified: '**/*.py'
+
+  job_with_filtered_steps:
+    needs:
+      - check_code_changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: values of filters
+        run: |
+          echo "non_documentation: ${{ needs.check_code_changes.outputs.non_documentation }}"
+          echo "python_code: ${{ needs.check_code_changes.outputs.python_code }}"
+          echo "non_frontend_code: ${{ needs.check_code_changes.outputs.non_frontend_code }}"
+
+      - name: run one thing
+        if: needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'
+        run: echo "needs.check_code_changes.outputs.non_frontend_code == 'true' && needs.check_code_changes.outputs.non_documentation == 'true'"

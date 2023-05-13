@@ -1,0 +1,13 @@
+name: Build in chain
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Build the Docker image
+          run: echo "Building the Docker image..."

@@ -1,0 +1,17 @@
+# a workflow depending on other
+name: Test in chain
+
+on:
+  workflow_run:
+    workflows: [ Build in chain ]
+    types:
+      - completed
+
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      steps:
+        - run: | 
+            echo "Testing FAIL the Docker image..."
+            exit 1
