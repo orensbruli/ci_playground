@@ -1,0 +1,32 @@
+name: Parent Buildcache
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+
+
+jobs:
+  parent_buildcache:
+    name: Parent Buildcache
+    runs-on:  ubuntu-22.04
+    steps:
+      - name: Set Docker cache sources
+        id: set_cache_source
+        run: |
+          base_branch_name="${GITHUB_BASE_REF:-$GITHUB_REF_NAME}-buildcache"
+          current_branch_name="${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}-buildcache"
+          
+          # If the expected cache for the base branch does not exist, use the main branch cache instead
+          if ! docker manifest inspect ${{ secrets.DOCKERHUB_USERNAME }}/orensbruli:$base_branch_name > /dev/null; then
+            base_branch_name="main-buildcache"
+          fi
+          
+          # Debugging
+          echo "setting base_branch_name=$base_branch_name"
+          echo "setting current_branch_name=$current_branch_name"
+          
+          # Setting output variables
+          echo "base_branch_name=$base_branch_name" >> $GITHUB_OUTPUT
+          echo "current_branch_name=$current_branch_name" >> $GITHUB_OUTPUT
