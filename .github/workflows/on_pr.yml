@@ -12,3 +12,17 @@ jobs:
 
     - name: Imprimir información del evento
       run: cat $GITHUB_EVENT_PATH | jq .
+    
+  job-cuando-pr-cerrado:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.closed_at != null
+    steps:
+    - name: Ejecutar si el PR está cerrado
+      run: echo "Este PR está cerrado."
+
+  job-cuando-pr-abierto:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.closed_at == null
+    steps:
+    - name: Ejecutar si el PR está abierto
+      run: echo "Este PR aún está abierto."
