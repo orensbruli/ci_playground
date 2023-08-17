@@ -1,0 +1,9 @@
+on:
+  pull_request:
+
+jobs:
+  on_pr:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo ${github.event.pull_request.merged}
