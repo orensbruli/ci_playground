@@ -1,5 +1,10 @@
+name: detect closed pr
+
 on:
-  pull_request:
+  # Run workflow on-demand
+  workflow_dispatch:
+  # Run workflow on pushes (including tags) on all branches
+  push:
 
 jobs:
   on_pr:
