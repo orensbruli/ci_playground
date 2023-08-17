@@ -7,3 +7,8 @@ jobs:
     steps:
     - run: |
         echo "value of github.event.pull_request.merged is  ${{ github.event.pull_request.merged }}"
+    - name: Instalar jq
+      run: sudo apt-get install jq
+
+    - name: Imprimir información del evento
+      run: cat $GITHUB_EVENT_PATH | jq .
