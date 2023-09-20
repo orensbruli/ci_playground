@@ -27,8 +27,20 @@ jobs:
     steps:
       - name: Deploy
         run: |
-           echo "$SSHKEY" > development.key 
-           ssh -i development.key ${SSHUSER}@${SSHHOST} "ls; pwd; df"
+          mkdir -p ~/.ssh/
+          echo "$SSHKEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSHHOST
+            User $SSHUSER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSHUSER }}
+          SSH_KEY: ${{ secrets.SSHKEY }}
+          SSH_HOST: ${{ secrets.SSHHOST }}
 
   deploy_staging:
     name: Deploy to Staging
