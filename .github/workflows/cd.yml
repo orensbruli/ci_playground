@@ -26,7 +26,9 @@ jobs:
       url: 'ssh://<user>@<dev-host>:<port>'
     steps:
       - name: Deploy
-        run: echo "I am deploying to dev!"
+        run: |
+           echo "$SSHKEY" > ~/.ssh/development.key 
+           ssh -i ~/.ssh/development.key ${SSHUSER}@${SSHHOST} "ls; pwd; df"
 
   deploy_staging:
     name: Deploy to Staging
