@@ -1,0 +1,42 @@
+name: CD
+
+on:
+  # Run workflow on-demand
+  workflow_dispatch:
+  # Run workflow on pushes (including tags) on all branches
+  push:
+
+
+jobs:
+
+  deploy dev:
+    name: Deploy to Dev
+    if: github.event.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: Development
+      url: 'ssh://<user>@<dev-host>:<port>'
+    steps:
+      - name: Deploy
+        run: echo "I am deploying to dev!"
+
+  deploy staging:
+    name: Deploy to Staging
+    if: github.event.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: Staging
+      url: 'ssh://<user>@<staging-host>:<port>'
+    steps:
+      - name: Deploy
+        run: echo "I am deploying to staging!"
+
+  deploy prod:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: 'ssh://<user>@<prod-host>:<port>'
+    steps:
+      - name: Deploy
+        run: echo "I am deploying to prod!"
