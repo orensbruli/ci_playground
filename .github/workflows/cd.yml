@@ -1,17 +1,25 @@
 name: CD
 
 on:
-  # Run workflow on-demand
-  workflow_dispatch:
-  # Run workflow on pushes (including tags) on all branches
+  # Run workflow on pushes (including tags) on main branch
   push:
-
+    branches:
+      - main
+  
+  # Run workflow on tag creation with the specific pattern
+  create:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+-rc[0-9]+'
+  
+  # Run workflow on release creation
+  release:
+    types:
+      - created
 
 jobs:
-
   deploy_dev:
     name: Deploy to Dev
-    if: github.event.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: Development
@@ -22,7 +30,7 @@ jobs:
 
   deploy_staging:
     name: Deploy to Staging
-    if: github.event.ref == 'refs/heads/main'
+    if: github.event_name == 'create' && startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     environment:
       name: Staging
@@ -33,6 +41,7 @@ jobs:
 
   deploy_prod:
     name: Deploy to Production
+    if: github.event_name == 'release' && github.event.action == 'created'
     runs-on: ubuntu-latest
     environment:
       name: Production
