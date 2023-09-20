@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  deploy dev:
+  deploy_dev:
     name: Deploy to Dev
     if: github.event.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
       - name: Deploy
         run: echo "I am deploying to dev!"
 
-  deploy staging:
+  deploy_staging:
     name: Deploy to Staging
     if: github.event.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
       - name: Deploy
         run: echo "I am deploying to staging!"
 
-  deploy prod:
+  deploy_prod:
     name: Deploy to Production
     runs-on: ubuntu-latest
     environment:
