@@ -25,7 +25,7 @@ jobs:
       name: Development
       url: 'ssh://<user>@<dev-host>:<port>'
     steps:
-      - name: Deploy
+      - name: configure ssh
         run: |
           mkdir -p ~/.ssh/
           echo "$SSHKEY" > ~/.ssh/staging.key
@@ -41,6 +41,9 @@ jobs:
           SSH_USER: ${{ secrets.SSHUSER }}
           SSH_KEY: ${{ secrets.SSHKEY }}
           SSH_HOST: ${{ secrets.SSHHOST }}
+      - name: Deploy
+        run: |
+          ssh staging 'ls; pwd; df -h'
 
   deploy_staging:
     name: Deploy to Staging
