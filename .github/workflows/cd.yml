@@ -27,8 +27,8 @@ jobs:
     steps:
       - name: Deploy
         run: |
-           echo "$SSHKEY" > ~/.ssh/development.key 
-           ssh -i ~/.ssh/development.key ${SSHUSER}@${SSHHOST} "ls; pwd; df"
+           echo "$SSHKEY" > development.key 
+           ssh -i development.key ${SSHUSER}@${SSHHOST} "ls; pwd; df"
 
   deploy_staging:
     name: Deploy to Staging
