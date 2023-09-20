@@ -38,9 +38,9 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_USER: ${{ secrets.SSHUSER }}
-          SSH_KEY: ${{ secrets.SSHKEY }}
-          SSH_HOST: ${{ secrets.SSHHOST }}
+          SSHUSER: ${{ secrets.SSHUSER }}
+          SSHKEY: ${{ secrets.SSHKEY }}
+          SSHHOST: ${{ secrets.SSHHOST }}
       - name: Deploy
         run: |
           ssh staging 'ls; pwd; df -h'
