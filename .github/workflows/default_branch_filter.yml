@@ -1,0 +1,21 @@
+name: default_branch
+on:
+  push:
+    branches:
+  workflow_dispatch:
+jobs:
+  default_branch:
+    runs-on: ubuntu-22.04
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    steps:
+      - name: default branch
+        run: |
+          echo "Running in default branch"
+  
+  not_ default_branch:
+    runs-on: ubuntu-22.04
+    if: github.ref != format('refs/heads/{0}', github.event.repository.default_branch)
+    steps:
+      - name: not default branch
+        run: |
+          echo "Running in NOT default branch"
